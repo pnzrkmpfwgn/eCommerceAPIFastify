@@ -11,9 +11,6 @@ const dotenv = require("dotenv");
 
 dotenv.config({ path: "./env" });
 
-
-console.log(process.env.JWT_PRIVATE)
-
 // Register JWT
 fastify.register(jwt, {
   secret: {
