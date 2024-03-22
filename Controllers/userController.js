@@ -30,7 +30,7 @@ const registerUser = async (request, reply) => {
     // TO DO: Send a welcome email to the user
 
     const user = await User.findOne({ where: { email: email } });
-    const token = await reply.jwtSign({ id: user.id }, { expiresIn: "5 days" });
+    const token = await reply.jwtSign({ id: user.id,role: "user" }, { expiresIn: "5 days" });
 
     // Commented out for now.
     // await sendEmail(
@@ -74,7 +74,7 @@ const loginUser = async (request, reply) => {
     }
 
     //Generate jwt token
-    const token = await reply.jwtSign({ id: user.id }, { expiresIn: "5 days" });
+    const token = await reply.jwtSign({ id: user.id, role:"user" }, { expiresIn: "5 days" });
 
     reply.code(200).send({ msg: "User logged in successfully", token: token });
   } catch (error) {

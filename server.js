@@ -3,6 +3,7 @@ const fastify = require("fastify")({
 });
 const { Sequelize } = require("sequelize");
 const userRoutes = require("./Routes/userRoutes");
+const adminRoutes = require("./Routes/adminRoutes");
 const jwt = require("@fastify/jwt");
 const { readFileSync } = require('node:fs')
 const path = require('node:path')
@@ -47,6 +48,7 @@ sequelize
 
 // Mount the routes
 fastify.register(userRoutes, { prefix: "/api/users" });
+fastify.register(adminRoutes, { prefix: "/api/admin" });
 
 fastify.listen({ port: 3000 }, function (err, address) {
   if (err) {
